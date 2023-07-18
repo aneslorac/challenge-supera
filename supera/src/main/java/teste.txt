@@ -1,0 +1,73 @@
+
+    public static void solveChallengeV2(Float price) {
+
+        System.out.println(price);
+
+        /*Map<String, Integer> cells = Map.of(
+                "100", 0,
+                "50", 0,
+                "20", 0,
+                "10", 0,
+                "5", 0,
+                "2", 0
+        );
+
+        Map<String, Integer> coins = Map.of(
+                "1", 0,
+                "0.50", 0,
+                "0.25", 0,
+                "0.10", 0,
+                "0.05", 0,
+                "0.01", 0
+        );*/
+
+        List<Float> cells = Arrays.asList(new Float(100), new Float(50), new Float(20), new Float(10), new Float(5), new Float(2));
+        List<Float> coins = Arrays.asList(new Float(1.00), new Float(0.50), new Float(0.20), new Float(0.10), new Float(0.05), new Float(0.01));
+
+        //Map<String, Integer> decomposedCoins = new HashMap();
+
+        Float remainingAmount = price;
+
+        while (remainingAmount > 0.0) {
+            if (remainingAmount >= 2.0) {
+                for (Float v : cells) {
+                    int amount = (int)Math.floor(remainingAmount / v);
+
+                    if (amount != 0) {
+                        remainingAmount = remainingAmount - amount * v;
+                    }
+
+                    System.out.println(String.format("%d nota(s) de R$ %f", amount, v));
+                }
+            }
+            else {
+
+                DecimalFormat decfor = new DecimalFormat("0.00");
+
+                for (Float v : coins) {
+                    int amount = (int)Math.floor(remainingAmount / v);
+
+                    if (amount != 0) {
+                        remainingAmount = remainingAmount - amount * v;
+                    }
+
+                    System.out.println(String.format("%d moedas(s) de R$ %f", amount, v));
+                }
+
+
+            }
+        }
+
+        /*for (Map.Entry<String,Integer> pair : coins.entrySet()) {
+
+            Float amount = (float)Math.floor(remainingAmount / Float.parseFloat(pair.getKey()));
+            if (amount != 0) {
+                remainingAmount = remainingAmount - amount * Float.parseFloat(pair.getKey());
+            }
+            System.out.println(String.format("%f nota(s) de R$ %s", amount, pair.getKey()));
+        }*/
+
+        // 1 moeda(s) de R$ 1.00
+        // 5 nota(s) de R$ 100.00
+
+    }
